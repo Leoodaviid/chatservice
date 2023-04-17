@@ -1,1 +1,21 @@
 package entity
+
+type Model struct {
+	Name      string
+	MaxTokens int
+}
+
+func NewMode(name string, maxTokens int) *Model {
+	return &Model{
+		Name:      name,
+		MaxTokens: maxTokens,
+	}
+}
+
+func (m *Model) GetMaxTokens() int {
+	return m.MaxTokens
+}
+
+func (m *Model) getModelName() string {
+	return m.Name
+}
