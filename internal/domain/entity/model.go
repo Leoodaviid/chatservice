@@ -5,7 +5,7 @@ type Model struct {
 	MaxTokens int
 }
 
-func NewMode(name string, maxTokens int) *Model {
+func NewModel(name string, maxTokens int) *Model {
 	return &Model{
 		Name:      name,
 		MaxTokens: maxTokens,
