@@ -14,7 +14,7 @@ type ChatConfig struct {
 	Stop             []string // list of tokens to generate
 	MaxTokens        int      // number of tokens to generate
 	PresencePenalty  float32  // -2.0 to 2.0 - Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they apper in the text so far, increasing the model's likelihood to talk about new topics.
-	FrequencePenalty float32  // -2.0 to 2.0 - Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, increasing the model's likelihood to talk about new topics.
+	FrequencyPenalty float32  // -2.0 to 2.0 - Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, increasing the model's likelihood to talk about new topics.
 }
 
 type Chat struct {
