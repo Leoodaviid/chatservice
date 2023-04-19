@@ -93,7 +93,7 @@ func (uc *ChatCompletionUseCase) Execute(ctx context.Context, input ChatCompleti
 		Temperature: chat.Config.Temperature,
 		TopP: chat.Config.TopP,
 		PresencePenalty: chat.Config.PresencePenalty,
-		FrequencyPenalty: chat.Config.FrequencePenalty,
+		FrequencyPenalty: chat.Config.FrequencyPenalty,
 		Stop: chat.Config.Stop,
 		Stream: true,
 	})
@@ -149,7 +149,7 @@ func createNewChat(input ChatCompletionInputDTO) (*entity.Chat, error){
 		Stop: input.Config.Stop,
 		MaxTokens: input.Config.MaxTokens,
 		PresencePenalty: input.Config.PresencePenalty,
-		FrequencePenalty: input.Config.FrequencyPenalty,
+		FrequencyPenalty: input.Config.FrequencyPenalty,
 		Model: model,
 	}
 	initialMessage, err := entity.NewMessage("system", input.Config.InitialSystemMessage, model)
