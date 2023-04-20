@@ -8,7 +8,9 @@ services:
     volumes:
       - .:/home/node/app
     extra_hosts:
-      - "host.docker.internal:172.17.0.1"  
+      - "host.docker.internal:172.17.0.1" 
+    networks:
+      - chatservice   
 
   db:
     image: mysql:8.0.30-debian
@@ -17,3 +19,10 @@ services:
       - MYSQL_DATABASE=chat
     volumes:
       - .docker/dbdata:/var/lib/mysql
+    networks:
+      - chatservice   
+
+networks:
+  chatservice:
+    external: true   
+
