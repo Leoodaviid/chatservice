@@ -27,7 +27,13 @@
 	},
 	"customizations": {
 		"vscode": {
-			"extensions": ["rangav.vscode-thunder-client", "prisma.prisma", "pbkit.vscode-pbkit", "firsttris.vscode-jest-runner"]
+			"extensions": [
+				"humao.rest-client",
+				"prisma.prisma",
+				"zxh404.vscode-proto3",
+				"firsttris.vscode-jest-runner",
+				"bradlc.vscode-tailwindcss"
+			]
 		}
 	}
 
