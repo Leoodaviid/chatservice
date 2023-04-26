@@ -7,8 +7,10 @@ services:
       - 3000:3000
     volumes:
       - .:/home/node/app
-    networks:
-      - chatservice
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"   
+    # networks:
+    #   - chatservice
 
   db:
     image: mysql:8.0.30-debian
@@ -17,9 +19,20 @@ services:
       - MYSQL_DATABASE=chat
     volumes:
       - .docker/dbdata:/var/lib/mysql
-    networks:
-      - chatservice
+    # networks:
+    #   - chatservice
 
-networks:
-  chatservice:
-    external: true
+  keycloak:
+    image: quay.io/keycloak/keycloak:21.0
+    command: start-dev
+    ports:
+      - 9000:8080
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin 
+    # networks:
+    #   - chatservice     
+
+# networks:
+#   chatservice:
+#     external: true
