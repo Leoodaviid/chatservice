@@ -1,40 +1,41 @@
 import { prisma } from "../../prisma/prisma"
 import { NextRequest, NextResponse } from "next/server";
+import { withAuth } from "../helpers";
 
-export async function POST(request: NextRequest) {
-    const body = await request.json()
+export const POST = withAuth(async (request: NextRequest, token) => {
+    const body = await request.json();
     const chatCreated = await prisma.chat.create({
-        data: {
-            messages: {
-                create: {
+        data:{
+            user_id: token.sub!,
+            messages:{
+                create:{
                     content: body.message,
                 },
             },
         },
-        select: {
+        select:{
             id: true,
-            messages: true
+            messages: true,
         },
     });
-
-
     return NextResponse.json(chatCreated);
-}
+});
 
-export async function GET(request: NextRequest) {
-
+export const GET = withAuth(async (_request: NextRequest, token) => {
     const chats = await prisma.chat.findMany({
-        select: {
+        where: {
+            user_id: token.sub,
+        },
+        select:{
             id: true,
-            messages: {
-                orderBy: { created_at: "asc" },
+            messages:{
+                orderBy: {created_at: "asc"},
                 take: 1,
             },
         },
-        orderBy: {
+        orderBy:{
             created_at: "desc",
-        },
+        }
     });
-
     return NextResponse.json(chats);
-}
+})
